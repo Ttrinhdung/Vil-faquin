@@ -198,8 +198,8 @@
         Des représailles seront appliquées très prochainement.
     </p>
 
-    <button onclick="appel()">
-        Faire appel
+    <button onclick="contester()">
+        Contester le verdict
     </button>
 
     <div id="resultat"></div>
@@ -221,12 +221,6 @@
             </tr>
 
         </table>
-
-        <div class="citation">
-            Situation actuelle :<br>
-            Estelle conserve encore l'avantage... mais la contre-offensive est imminente.
-        </div>
-
     </div>
 
     <div class="footer">
@@ -251,49 +245,43 @@
 
 <script>
 
-function appel() {
+function contester(){
 
-    const zone = document.getElementById("resultat");
+    const z = document.getElementById("resultat");
 
-    zone.innerHTML = `
+    z.innerHTML = `
         <div class="loader"></div>
-        <p>Transmission de votre appel...</p>
+        <p>Enregistrement du recours...</p>
     `;
 
-    setTimeout(function () {
-
-        zone.innerHTML = `
+    setTimeout(()=>{
+        z.innerHTML = `
             <div class="loader"></div>
-            <p>Consultation du Conseil des Vil Faquins...</p>
+            <p>Transmission au Conseil des Vil Faquins...</p>
         `;
+    },1700);
 
-    }, 1800);
-
-    setTimeout(function () {
-
-        zone.innerHTML = `
+    setTimeout(()=>{
+        z.innerHTML = `
             <div class="loader"></div>
-            <p>Analyse des antécédents judiciaires...</p>
+            <p>Consultation des preuves...</p>
         `;
+    },3400);
 
-    }, 3600);
-
-    setTimeout(function () {
-
-        zone.innerHTML = `
-            <h2 style="color:#ff5050;">❌ Appel refusé</h2>
+    setTimeout(()=>{
+        z.innerHTML = `
+            <h2 style="color:#ff5555">❌ Recours irrecevable</h2>
 
             <p>
                 <b>Motif :</b><br>
                 Accumulation répétée de saloperies.
             </p>
 
-            <p>
-                Le Tribunal des Vil Faquins est souverain 😈
-            </p>
+            <button onclick="insister()">
+                Insister quand même
+            </button>
         `;
-
-    }, 5600);
+    },5200);
 
 }
 
