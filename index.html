@@ -1,45 +1,150 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<title>Tribunal des Vil Faquins</title>
+    <meta charset="UTF-8">
+    <title>Tribunal des Vil Faquins</title>
 
-<style>
-body{
-    font-family:Arial;
-    background:#111;
-    color:white;
-    text-align:center;
-    padding-top:60px;
-}
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+        }
 
-.card{
-    width:650px;
-    margin:auto;
-    background:#222;
-    padding:30px;
-    border-radius:15px;
-}
+        .card {
+            width: 720px;
+            margin: 50px auto;
+            background: #222;
+            border-radius: 18px;
+            padding: 35px;
+            position: relative;
+            box-shadow: 0 0 25px rgba(0,0,0,.5);
+        }
 
-h1{
-    color:#ff5050;
-}
+        .confidentiel {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            transform: rotate(18deg);
+            border: 3px solid red;
+            color: red;
+            padding: 8px 18px;
+            font-weight: bold;
+            font-size: 18px;
+            opacity: .35;
+            letter-spacing: 2px;
+        }
 
-button{
-    margin-top:30px;
-    padding:15px 30px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:18px;
-}
+        h1 {
+            color: #ff5757;
+            text-align: center;
+            margin-bottom: 5px;
+        }
 
-#resultat{
-    margin-top:30px;
-    font-size:24px;
-    color:#ff5050;
-}
-</style>
+        h2,h3{
+            text-align:center;
+        }
+
+        p{
+            text-align:center;
+            line-height:1.8em;
+        }
+
+        .preuves{
+            width:80%;
+            margin:auto;
+            font-size:18px;
+        }
+
+        .preuves p{
+            text-align:left;
+        }
+
+        .verdict{
+            font-size:55px;
+            color:#ff4b4b;
+            font-weight:bold;
+            margin:20px 0;
+        }
+
+        button{
+            display:block;
+            margin:auto;
+            padding:15px 35px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:18px;
+            transition:.3s;
+        }
+
+        button:hover{
+            transform:scale(1.05);
+        }
+
+        #resultat{
+            text-align:center;
+            margin-top:30px;
+            font-size:22px;
+            min-height:70px;
+            line-height:1.6em;
+        }
+
+        .loader{
+            margin:20px auto;
+            border:6px solid #555;
+            border-top:6px solid white;
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            animation:spin 1s linear infinite;
+        }
+
+        @keyframes spin{
+            from{transform:rotate(0deg);}
+            to{transform:rotate(360deg);}
+        }
+
+        .score{
+            margin-top:45px;
+            border-top:1px solid #555;
+            padding-top:25px;
+        }
+
+        table{
+            margin:auto;
+            border-collapse:collapse;
+            width:350px;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #444;
+            font-size:20px;
+        }
+
+        td:last-child{
+            text-align:right;
+            font-weight:bold;
+        }
+
+        .footer{
+            margin-top:40px;
+            text-align:center;
+            color:#999;
+            font-size:14px;
+        }
+
+        .citation{
+            margin-top:20px;
+            text-align:center;
+            font-style:italic;
+            color:#ff6666;
+        }
+
+    </style>
 
 </head>
 
@@ -47,7 +152,11 @@ button{
 
 <div class="card">
 
-<h1>⚔️ Tribunal des Vil Faquins ⚔️</h1>
+<div class="confidentiel">
+CONFIDENTIEL
+</div>
+
+<h1>⚔ Tribunal des Vil Faquins ⚔</h1>
 
 <h2>Affaire n°001</h2>
 
@@ -55,17 +164,25 @@ button{
 
 <h3>Chefs d'accusation</h3>
 
-<p>📸 Diffusion d'une photo d'un soldat endormi.</p>
+<div class="preuves">
+
+<p>📸 Diffusion illégale d'une photo d'un soldat profondément endormi.</p>
 
 <p>🚗 Tentative d'abandon sur le bord de la route.</p>
 
-<p>🫒 Remise frauduleuse d'une bouteille d'huile à la place d'eau.</p>
+<p>🛢️ Substitution frauduleuse d'une bouteille d'eau par une bouteille d'huile.</p>
+
+</div>
 
 <h2>Verdict</h2>
 
-<h1>COUPABLE</h1>
+<div class="verdict">
+COUPABLE
+</div>
 
-<p>Une représaille sera appliquée à une date inconnue.</p>
+<p>
+Des représailles seront appliquées très prochainement.
+</p>
 
 <button onclick="appel()">
 Faire appel
@@ -73,16 +190,91 @@ Faire appel
 
 <div id="resultat"></div>
 
+<div class="score">
+
+<h2>⚔ Classement officiel ⚔</h2>
+
+<table>
+
+<tr>
+<td>😈 Estelle</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>🧔 Omni</td>
+<td>0 (pour l'instant)</td>
+</tr>
+
+</table>
+
+<div class="citation">
+
+« Première erreur... ne pas me sous-estimer !!! »
+
+</div>
+
+</div>
+
+<div class="footer">
+
+Tribunal des Vil Faquins™<br>
+Justice • Mauvaise foi • Représailles
+
+</div>
+
 </div>
 
 <script>
 
 function appel(){
-document.getElementById("resultat").innerHTML =
-"❌ Appel refusé.<br><br>Le tribunal des Vil Faquins est souverain 😈";
+
+const zone=document.getElementById("resultat");
+
+zone.innerHTML=`
+<div class="loader"></div>
+<p>Transmission de votre demande...</p>
+`;
+
+setTimeout(function(){
+
+zone.innerHTML=`
+<div class="loader"></div>
+<p>Consultation du Conseil des Vil Faquins...</p>
+`;
+
+},1800);
+
+setTimeout(function(){
+
+zone.innerHTML=`
+<div class="loader"></div>
+<p>Recherche d'un précédent juridique...</p>
+`;
+
+},3600);
+
+setTimeout(function(){
+
+zone.innerHTML=`
+<h2 style="color:#ff5050;">❌ Appel refusé</h2>
+
+<p>
+Motif :<br>
+Absence totale de circonstances atténuantes.
+</p>
+
+<p>
+Le Tribunal des Vil Faquins est souverain 😈
+</p>
+`;
+
+},5600);
+
 }
 
 </script>
 
 </body>
+
 </html>
