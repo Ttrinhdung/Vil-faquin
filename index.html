@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Tribunal des Vil Faquins</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#111;
+    color:white;
+    text-align:center;
+    padding-top:60px;
+}
+
+.card{
+    width:650px;
+    margin:auto;
+    background:#222;
+    padding:30px;
+    border-radius:15px;
+}
+
+h1{
+    color:#ff5050;
+}
+
+button{
+    margin-top:30px;
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#resultat{
+    margin-top:30px;
+    font-size:24px;
+    color:#ff5050;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>⚔️ Tribunal des Vil Faquins ⚔️</h1>
+
+<h2>Affaire n°001</h2>
+
+<p><b>Accusée :</b> Estelle Rioual</p>
+
+<h3>Chefs d'accusation</h3>
+
+<p>📸 Diffusion d'une photo d'un soldat endormi.</p>
+
+<p>🚗 Tentative d'abandon sur le bord de la route.</p>
+
+<p>🫒 Remise frauduleuse d'une bouteille d'huile à la place d'eau.</p>
+
+<h2>Verdict</h2>
+
+<h1>COUPABLE</h1>
+
+<p>Une représaille sera appliquée à une date inconnue.</p>
+
+<button onclick="appel()">
+Faire appel
+</button>
+
+<div id="resultat"></div>
+
+</div>
+
+<script>
+
+function appel(){
+document.getElementById("resultat").innerHTML =
+"❌ Appel refusé.<br><br>Le tribunal des Vil Faquins est souverain 😈";
+}
+
+</script>
+
+</body>
+</html>
