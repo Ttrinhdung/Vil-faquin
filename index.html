@@ -14,33 +14,33 @@
         }
 
         .card {
-            width: 720px;
+            width: 760px;
             margin: 50px auto;
             background: #222;
             border-radius: 18px;
             padding: 35px;
             position: relative;
-            box-shadow: 0 0 25px rgba(0,0,0,.5);
+            box-shadow: 0 0 30px rgba(0,0,0,.6);
         }
 
         .confidentiel {
             position: absolute;
-            top: 25px;
+            top: 30px;
             right: 20px;
             transform: rotate(18deg);
-            border: 3px solid red;
+            border: 4px solid red;
             color: red;
             padding: 8px 18px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
             opacity: .35;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
-        h1 {
-            color: #ff5757;
-            text-align: center;
-            margin-bottom: 5px;
+        h1{
+            text-align:center;
+            color:#ff5757;
+            margin-bottom:10px;
         }
 
         h2,h3{
@@ -55,93 +55,117 @@
         .preuves{
             width:80%;
             margin:auto;
-            font-size:18px;
+            margin-top:20px;
         }
 
         .preuves p{
             text-align:left;
+            font-size:18px;
         }
 
         .verdict{
-            font-size:55px;
+            text-align:center;
+            font-size:65px;
             color:#ff4b4b;
             font-weight:bold;
-            margin:20px 0;
+            letter-spacing:3px;
+            margin-top:20px;
+            margin-bottom:20px;
         }
 
         button{
+
             display:block;
             margin:auto;
+            margin-top:25px;
             padding:15px 35px;
             border:none;
             border-radius:10px;
-            cursor:pointer;
             font-size:18px;
-            transition:.3s;
+            cursor:pointer;
+            transition:.25s;
         }
 
         button:hover{
+
             transform:scale(1.05);
+
         }
 
         #resultat{
+
             text-align:center;
+            min-height:120px;
             margin-top:30px;
-            font-size:22px;
-            min-height:70px;
-            line-height:1.6em;
+
         }
 
         .loader{
-            margin:20px auto;
-            border:6px solid #555;
-            border-top:6px solid white;
+
             width:45px;
             height:45px;
+            border:6px solid #666;
+            border-top:6px solid white;
             border-radius:50%;
+            margin:auto;
             animation:spin 1s linear infinite;
+
         }
 
         @keyframes spin{
+
             from{transform:rotate(0deg);}
             to{transform:rotate(360deg);}
+
         }
 
         .score{
-            margin-top:45px;
+
+            margin-top:40px;
             border-top:1px solid #555;
-            padding-top:25px;
+            padding-top:30px;
+
         }
 
         table{
+
+            width:350px;
             margin:auto;
             border-collapse:collapse;
-            width:350px;
+
         }
 
         td{
+
             padding:12px;
-            border-bottom:1px solid #444;
             font-size:20px;
+            border-bottom:1px solid #444;
+
         }
 
         td:last-child{
+
             text-align:right;
             font-weight:bold;
+
+        }
+
+        .citation{
+
+            text-align:center;
+            margin-top:25px;
+            color:#ff6666;
+            font-style:italic;
+
         }
 
         .footer{
+
             margin-top:40px;
             text-align:center;
             color:#999;
             font-size:14px;
-        }
 
-        .citation{
-            margin-top:20px;
-            text-align:center;
-            font-style:italic;
-            color:#ff6666;
         }
 
     </style>
@@ -153,7 +177,9 @@
 <div class="card">
 
 <div class="confidentiel">
+
 CONFIDENTIEL
+
 </div>
 
 <h1>⚔ Tribunal des Vil Faquins ⚔</h1>
@@ -177,15 +203,21 @@ CONFIDENTIEL
 <h2>Verdict</h2>
 
 <div class="verdict">
+
 COUPABLE
+
 </div>
 
 <p>
+
 Des représailles seront appliquées très prochainement.
+
 </p>
 
 <button onclick="appel()">
+
 Faire appel
+
 </button>
 
 <div id="resultat"></div>
@@ -197,20 +229,28 @@ Faire appel
 <table>
 
 <tr>
+
 <td>😈 Estelle</td>
+
 <td>3</td>
+
 </tr>
 
 <tr>
-<td>🧔 Omni</td>
-<td>0 (pour l'instant)</td>
+
+<td>👹 Omni</td>
+
+<td>1</td>
+
 </tr>
 
 </table>
 
 <div class="citation">
 
-« Première erreur... ne pas me sous-estimer !!! »
+Situation actuelle :<br>
+
+Estelle conserve l'avantage... mais Omni prépare activement sa contre-offensive.
 
 </div>
 
@@ -219,6 +259,7 @@ Faire appel
 <div class="footer">
 
 Tribunal des Vil Faquins™<br>
+
 Justice • Mauvaise foi • Représailles
 
 </div>
@@ -233,7 +274,7 @@ const zone=document.getElementById("resultat");
 
 zone.innerHTML=`
 <div class="loader"></div>
-<p>Transmission de votre demande...</p>
+<p>Transmission de votre appel...</p>
 `;
 
 setTimeout(function(){
@@ -249,7 +290,7 @@ setTimeout(function(){
 
 zone.innerHTML=`
 <div class="loader"></div>
-<p>Recherche d'un précédent juridique...</p>
+<p>Analyse des antécédents judiciaires...</p>
 `;
 
 },3600);
@@ -260,12 +301,17 @@ zone.innerHTML=`
 <h2 style="color:#ff5050;">❌ Appel refusé</h2>
 
 <p>
-Motif :<br>
-Absence totale de circonstances atténuantes.
+
+<b>Motif :</b><br>
+
+Accumulation répétée de saloperies.
+
 </p>
 
 <p>
+
 Le Tribunal des Vil Faquins est souverain 😈
+
 </p>
 `;
 
