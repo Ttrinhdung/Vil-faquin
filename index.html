@@ -3,24 +3,37 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Tribunal des Vil Faquins</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
+            padding: 20px;
             background: #111;
             color: white;
             font-family: Arial, Helvetica, sans-serif;
         }
 
         .card {
-            width: 760px;
-            margin: 50px auto;
+            width: 100%;
+            max-width: 760px;
+            margin: 30px auto;
             background: #222;
             border-radius: 18px;
             padding: 35px;
             position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,.5);
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, .5);
         }
 
         .confidentiel {
@@ -35,12 +48,13 @@
             font-weight: bold;
             letter-spacing: 2px;
             opacity: .35;
+            pointer-events: none;
         }
 
         h1 {
             text-align: center;
             color: #ff5a5a;
-            margin-bottom: 5px;
+            margin: 25px 0 5px;
         }
 
         h2,
@@ -55,8 +69,7 @@
 
         .preuves {
             width: 80%;
-            margin: auto;
-            margin-top: 20px;
+            margin: 20px auto 0;
         }
 
         .preuves p {
@@ -71,22 +84,35 @@
             font-weight: bold;
             letter-spacing: 4px;
             margin: 25px 0;
+            word-break: break-word;
         }
 
         button {
             display: block;
-            margin: auto;
-            margin-top: 25px;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            margin: 25px auto 0;
+            padding: 16px 22px;
+            border: 2px solid #ff5050;
+            border-radius: 12px;
+            background: #ff5050;
+            color: white;
             cursor: pointer;
             font-size: 18px;
+            font-weight: bold;
             transition: .25s;
         }
 
         button:hover {
-            transform: scale(1.05);
+            background: transparent;
+            color: #ff6060;
+            transform: scale(1.03);
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: .6;
+            transform: none;
         }
 
         #resultat {
@@ -115,6 +141,31 @@
             }
         }
 
+        .dossier-contestation {
+            max-width: 520px;
+            margin: 25px auto 0;
+            padding: 20px;
+            border: 1px solid #555;
+            border-radius: 12px;
+            background: #191919;
+        }
+
+        .dossier-contestation p {
+            margin: 8px 0;
+        }
+
+        .tampon-refuse {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 18px;
+            border: 4px solid #ff3e3e;
+            color: #ff3e3e;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transform: rotate(-5deg);
+        }
+
         .score {
             margin-top: 45px;
             border-top: 1px solid #555;
@@ -122,8 +173,9 @@
         }
 
         table {
+            width: 100%;
+            max-width: 350px;
             margin: auto;
-            width: 350px;
             border-collapse: collapse;
         }
 
@@ -138,28 +190,96 @@
             font-weight: bold;
         }
 
-        .citation {
-            margin-top: 25px;
-            text-align: center;
-            color: #ff6666;
-            font-style: italic;
-        }
-
         .footer {
             margin-top: 45px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
             text-align: center;
             color: #999;
             font-size: 14px;
-            border-top: 1px solid #444;
-            padding-top: 20px;
+            line-height: 1.6em;
         }
 
         .footer b {
             color: white;
         }
 
-    </style>
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
 
+            .card {
+                margin: 10px auto;
+                padding: 25px 18px;
+                border-radius: 14px;
+            }
+
+            .confidentiel {
+                top: 12px;
+                right: -24px;
+                padding: 6px 30px;
+                border-width: 3px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                transform: rotate(25deg);
+            }
+
+            h1 {
+                margin-top: 35px;
+                padding: 0 10px;
+                font-size: 27px;
+                line-height: 1.25em;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 19px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 1.55em;
+            }
+
+            .preuves {
+                width: 100%;
+            }
+
+            .preuves p {
+                font-size: 16px;
+                padding: 12px;
+                border-radius: 8px;
+                background: #2a2a2a;
+            }
+
+            .verdict {
+                font-size: 42px;
+                letter-spacing: 2px;
+            }
+
+            button {
+                max-width: none;
+                font-size: 17px;
+            }
+
+            td {
+                font-size: 17px;
+                padding: 12px 8px;
+            }
+
+            .dossier-contestation {
+                padding: 16px 12px;
+            }
+
+            .tampon-refuse {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -174,17 +294,25 @@
 
     <h2>Affaire n°001</h2>
 
-    <p><b>Accusée :</b> Estelle Rioual</p>
+    <p>
+        <b>Accusée :</b> Estelle Rioual
+    </p>
 
     <h3>Chefs d'accusation</h3>
 
     <div class="preuves">
 
-        <p>📸 Diffusion illégale d'une photo d'un soldat profondément endormi.</p>
+        <p>
+            📸 Diffusion illégale d'une photo d'un soldat profondément endormi.
+        </p>
 
-        <p>🚗 Tentative d'abandon sur le bord de la route.</p>
+        <p>
+            🚗 Tentative d'abandon sur le bord de la route.
+        </p>
 
-        <p>🛢️ Substitution frauduleuse d'une bouteille d'eau par une bouteille d'huile.</p>
+        <p>
+            🛢️ Substitution frauduleuse d'une bouteille d'eau par une bouteille d'huile.
+        </p>
 
     </div>
 
@@ -195,11 +323,14 @@
     </div>
 
     <p>
-        Des représailles seront appliquées très prochainement.
+        La sentence a été prononcée à l'unanimité par un jury parfaitement partial.
     </p>
 
-    <button onclick="appel()">
-        Faire appel
+    <button
+        id="boutonContestation"
+        onclick="contesterVerdict()"
+    >
+        ⚖️ Contester le verdict
     </button>
 
     <div id="resultat"></div>
@@ -222,9 +353,6 @@
 
         </table>
 
-        <div class="citation">
-        </div>
-
     </div>
 
     <div class="footer">
@@ -243,58 +371,189 @@
 
         Article 1 : Ne jamais sous-estimer son adversaire.
 
+        <br>
+
+        Article 2 : Toute contestation peut aggraver la peine.
+
     </div>
 
 </div>
 
 <script>
+    let contestationEnCours = false;
 
-function appel() {
+    function afficherEtape(contenu) {
+        document.getElementById("resultat").innerHTML = contenu;
+    }
 
-    const zone = document.getElementById("resultat");
+    function contesterVerdict() {
+        if (contestationEnCours) {
+            return;
+        }
 
-    zone.innerHTML = `
-        <div class="loader"></div>
-        <p>Transmission de votre appel...</p>
-    `;
+        contestationEnCours = true;
 
-    setTimeout(function () {
+        const bouton = document.getElementById("boutonContestation");
 
-        zone.innerHTML = `
+        bouton.disabled = true;
+        bouton.textContent = "Contestation en cours...";
+
+        afficherEtape(`
             <div class="loader"></div>
-            <p>Consultation du Conseil des Vil Faquins...</p>
-        `;
-
-    }, 1800);
-
-    setTimeout(function () {
-
-        zone.innerHTML = `
-            <div class="loader"></div>
-            <p>Analyse des antécédents judiciaires...</p>
-        `;
-
-    }, 3600);
-
-    setTimeout(function () {
-
-        zone.innerHTML = `
-            <h2 style="color:#ff5050;">❌ Appel refusé</h2>
 
             <p>
-                <b>Motif :</b><br>
-                Accumulation répétée de saloperies.
+                Ouverture d'un dossier de contestation...
+            </p>
+        `);
+
+        setTimeout(function () {
+            afficherEtape(`
+                <div class="loader"></div>
+
+                <p>
+                    Recherche d'un avocat suffisamment malhonnête...
+                </p>
+            `);
+        }, 1500);
+
+        setTimeout(function () {
+            afficherEtape(`
+                <div class="loader"></div>
+
+                <p>
+                    Analyse des preuves fournies par l'accusée...
+                </p>
+
+                <p>
+                    <small>
+                        Résultat : aucune preuve, uniquement de la mauvaise foi.
+                    </small>
+                </p>
+            `);
+        }, 3200);
+
+        setTimeout(function () {
+            afficherEtape(`
+                <div class="loader"></div>
+
+                <p>
+                    Consultation du Conseil Suprême des Vil Faquins...
+                </p>
+            `);
+        }, 5000);
+
+        setTimeout(function () {
+            afficherEtape(`
+                <div class="dossier-contestation">
+
+                    <h2>
+                        📁 Dossier de contestation
+                    </h2>
+
+                    <p>
+                        <b>Demandeuse :</b> Estelle Rioual
+                    </p>
+
+                    <p>
+                        <b>Argument présenté :</b><br>
+                        « Ce verdict est totalement injuste. »
+                    </p>
+
+                    <p>
+                        <b>Réponse du Tribunal :</b><br>
+                        « C'est exactement ce que dirait une coupable. »
+                    </p>
+
+                    <div class="tampon-refuse">
+                        CONTESTATION REFUSÉE
+                    </div>
+
+                    <p>
+                        Après une étude approfondie de 4 secondes,
+                        le Tribunal confirme le verdict initial.
+                    </p>
+
+                    <p>
+                        <b>Nouvelle circonstance aggravante :</b><br>
+                        Tentative de remise en question d'une décision parfaitement arbitraire.
+                    </p>
+
+                    <h2 style="color:#ff5050;">
+                        Peine aggravée 😈
+                    </h2>
+
+                    <p>
+                        Le Tribunal des Vil Faquins est souverain,
+                        susceptible et particulièrement rancunier.
+                    </p>
+
+                </div>
+            `);
+
+            bouton.disabled = false;
+            bouton.textContent = "Contester une nouvelle fois";
+
+            bouton.onclick = nouvelleContestation;
+        }, 7000);
+    }
+
+    function nouvelleContestation() {
+        const bouton = document.getElementById("boutonContestation");
+
+        bouton.disabled = true;
+        bouton.textContent = "Nouvelle contestation transmise...";
+
+        afficherEtape(`
+            <div class="loader"></div>
+
+            <p>
+                Transmission d'une nouvelle contestation...
             </p>
 
             <p>
-                Le Tribunal des Vil Faquins est souverain 😈
+                <small>
+                    Le Tribunal commence sérieusement à perdre patience.
+                </small>
             </p>
-        `;
+        `);
 
-    }, 5600);
+        setTimeout(function () {
+            afficherEtape(`
+                <div class="dossier-contestation">
 
-}
+                    <h2 style="color:#ff5050;">
+                        🚨 Récidive détectée
+                    </h2>
 
+                    <p>
+                        L'accusée persiste à contester une décision
+                        qui avait pourtant été prise sans lui demander son avis.
+                    </p>
+
+                    <div class="tampon-refuse">
+                        REFUS DÉFINITIF
+                    </div>
+
+                    <p>
+                        Toute contestation supplémentaire sera considérée
+                        comme un aveu spontané.
+                    </p>
+
+                    <p>
+                        <b>Verdict définitif :</b>
+                    </p>
+
+                    <div class="verdict" style="font-size: 38px;">
+                        ENCORE PLUS COUPABLE
+                    </div>
+
+                </div>
+            `);
+
+            bouton.textContent = "Contestation définitivement impossible";
+            bouton.disabled = true;
+        }, 3500);
+    }
 </script>
 
 </body>
